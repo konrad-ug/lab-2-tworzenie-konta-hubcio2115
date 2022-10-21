@@ -6,8 +6,8 @@ from ..Konto import Konto
 class TestCreateBankAccount(unittest.TestCase):
 
     def test_tworzenie_konta(self):
-        pierwsze_konto = Konto("Dariusz", "Januszewski")
-        self.assertEqual(pierwsze_konto.pesel, "123456789012",
+        pierwsze_konto = Konto("12345678901", "Dariusz", "Januszewski")
+        self.assertEqual(pierwsze_konto.pesel, "12345678901",
                          "Pesel nie został zapisany!")
         self.assertEqual(pierwsze_konto.imie, "Dariusz",
                          "Imie nie zostało zapisane!")
