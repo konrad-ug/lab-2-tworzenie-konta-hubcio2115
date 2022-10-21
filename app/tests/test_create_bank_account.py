@@ -4,9 +4,11 @@ from app.Konto import Konto
 
 
 class TestCreateBankAccount(unittest.TestCase):
+    pesel = "12345678901"
+    elderlyPesel = "59013456789"
+
     name = "Dariusz"
     surname = "Januszewski"
-    pesel = "12345678901"
     initialSaldo = 0
     coupon = "PROM_XYZ"
 
@@ -45,3 +47,10 @@ class TestCreateBankAccount(unittest.TestCase):
         account = Konto(self.pesel, self.name,
                         self.surname)
         self.assertEqual(account.saldo, 0, invalidMessage)
+
+    def test_coupon_is_not_applied_for_people_elderly(self):
+        account = Konto(self.elderlyPesel, self.name,
+                        self.surname, self.coupon)
+
+        self.assertEqual(account.saldo, 0,
+                         "Kupon nie powinien być ważny dla osób urodzonych po 1960!")
