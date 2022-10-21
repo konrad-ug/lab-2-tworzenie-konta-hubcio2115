@@ -33,3 +33,15 @@ class TestCreateBankAccount(unittest.TestCase):
         account = Konto(self.pesel, self.name, self.surname, self.coupon)
         self.assertEqual(account.saldo, 50,
                          "Saldo nie równa się 50 po zaaplikowaniu kuponu!")
+
+    def test_saldo_equals_to_zero_when_coupon_is_invalid(self):
+        invalidMessage = "Saldo nie równa się 0 po zaaplikowaniu błędnego lub pustego kuponu!"
+
+        account = Konto(self.pesel, self.name,
+                        self.surname, "PORM_XYZ")
+        self.assertEqual(
+            account.saldo, 0, invalidMessage)
+
+        account = Konto(self.pesel, self.name,
+                        self.surname)
+        self.assertEqual(account.saldo, 0, invalidMessage)
