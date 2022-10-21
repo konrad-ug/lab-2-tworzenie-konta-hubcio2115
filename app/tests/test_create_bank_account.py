@@ -8,6 +8,7 @@ class TestCreateBankAccount(unittest.TestCase):
     surname = "Januszewski"
     pesel = "12345678901"
     initialSaldo = 0
+    coupon = "PROM_XYZ"
 
     def test_tworzenie_konta(self):
         pierwsze_konto = Konto(self.pesel, self.name, self.surname)
@@ -27,3 +28,8 @@ class TestCreateBankAccount(unittest.TestCase):
         account = Konto(badPesel, self.name, self.surname)
         self.assertEqual(account.pesel, "Niepoprawny pesel!",
                          'Pesel nie ma wartości "Niepoprawny pesel", gdy podamy pesel w złym formacie!')
+
+    def test_saldo_equals_to_fifty_when_coupon_applied(self):
+        account = Konto(self.pesel, self.name, self.surname, self.coupon)
+        self.assertEqual(account.saldo, 50,
+                         "Saldo nie równa się 50 po zaaplikowaniu kuponu!")
