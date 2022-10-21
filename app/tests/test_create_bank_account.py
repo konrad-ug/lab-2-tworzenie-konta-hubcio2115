@@ -1,23 +1,29 @@
 import unittest
 
-from ..Konto import Konto
+from app.Konto import Konto
 
 
 class TestCreateBankAccount(unittest.TestCase):
+    name = "Dariusz"
+    surname = "Januszewski"
+    pesel = "12345678901"
+    initialSaldo = 0
 
     def test_tworzenie_konta(self):
-        pierwsze_konto = Konto("12345678901", "Dariusz", "Januszewski")
-        self.assertEqual(pierwsze_konto.pesel, "12345678901",
+        pierwsze_konto = Konto(self.pesel, self.name, self.surname)
+        self.assertEqual(pierwsze_konto.pesel, self.pesel,
                          "Pesel nie został zapisany!")
-        self.assertEqual(pierwsze_konto.imie, "Dariusz",
+        self.assertEqual(pierwsze_konto.imie, self.name,
                          "Imie nie zostało zapisane!")
-        self.assertEqual(pierwsze_konto.nazwisko, "Januszewski",
+        self.assertEqual(pierwsze_konto.nazwisko, self.surname,
                          "Nazwisko nie zostało zapisane!")
-        self.assertEqual(pierwsze_konto.saldo, 0, "Saldo nie jest zerowe!")
+        self.assertEqual(pierwsze_konto.saldo, self.initialSaldo,
+                         "Saldo nie jest zerowe!")
 
     # tutaj proszę dodawać nowe testy
 
     def test_when_pesel_is_not_eleven_in_length(self):
-        account = Konto("1", "Dariusz", "Januszkiewicz")
+        badPesel = "1"
+        account = Konto(badPesel, self.name, self.surname)
         self.assertEqual(account.pesel, "Niepoprawny pesel!",
                          'Pesel nie ma wartości "Niepoprawny pesel", gdy podamy pesel w złym formacie!')
