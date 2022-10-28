@@ -1,1 +1,1 @@
-# Hubert Kowalski (278805)
+# Hubert Kowalski gr. 2
