@@ -30,3 +30,13 @@ class Konto:
     def transferOut(self, amount: float) -> None:
         if (self.saldo >= amount):
             self.saldo -= amount
+
+    def expressTransferOut(self, amount: float) -> None:
+        try:
+            self.imie
+
+            if (self.saldo - amount - 1 >= -1):
+                self.saldo -= amount + 1
+        except AttributeError:
+            if (self.saldo - amount - 5 >= -5):
+                self.saldo -= amount + 5
