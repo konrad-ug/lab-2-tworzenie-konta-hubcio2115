@@ -18,8 +18,8 @@ class TestCreateCompanyBankAccount(unittest.TestCase):
         self.assertEqual(account.saldo, self.initialSaldo,
                          "Saldo konta firmowego nie jest równe 0 przy jego stworzeniu!")
 
-    # def test_when_nip_is_not_ten_in_length(self):
-    #     account = KontoFirmowe("1", self.name)
+    def test_when_nip_is_not_ten_in_length(self):
+        account = KontoFirmowe("1", self.name)
 
-    #     self.assertEqual(account.nip, "Niepoprawny NIP!",
-    #                      'Pesel nie ma wartości "Niepoprawny pesel", gdy podamy pesel w złym formacie!')
+        self.assertEqual(account.nip, "Niepoprawny NIP!",
+                         'Pesel nie ma wartości "Niepoprawny pesel", gdy podamy pesel w złym formacie!')
