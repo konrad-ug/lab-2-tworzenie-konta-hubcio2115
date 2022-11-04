@@ -4,12 +4,13 @@ from app.Konto import Konto
 
 
 class TestCreateBankAccount(unittest.TestCase):
-    pesel = "12345678901"
     elderlyPesel = "59013456789"
 
     name = "Dariusz"
     surname = "Januszewski"
+    pesel = "12345678901"
     initialSaldo = 0
+
     coupon = "PROM_XYZ"
 
     def test_tworzenie_konta(self):
