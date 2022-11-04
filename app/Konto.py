@@ -1,6 +1,3 @@
-import re
-
-
 class Konto:
     def __init__(self, pesel: str, imie: str, nazwisko: str, coupon: str = "") -> None:
         self.imie = imie
@@ -8,6 +5,8 @@ class Konto:
 
         self.checkIfPeselIsValid(pesel)
         self.checkIfPromoIsApplicable(coupon)
+
+        self.expressTransferOutCost = 1
 
     def checkIfPeselIsValid(self, pesel: str) -> None:
         if (len(pesel) == 11):
@@ -32,11 +31,7 @@ class Konto:
             self.saldo -= amount
 
     def expressTransferOut(self, amount: float) -> None:
-        try:
-            self.imie
+        calculatedAmount = amount + self.expressTransferOutCost
 
-            if (self.saldo - amount - 1 >= -1):
-                self.saldo -= amount + 1
-        except AttributeError:
-            if (self.saldo - amount - 5 >= -5):
-                self.saldo -= amount + 5
+        if (self.saldo >= amount):
+            self.saldo -= calculatedAmount

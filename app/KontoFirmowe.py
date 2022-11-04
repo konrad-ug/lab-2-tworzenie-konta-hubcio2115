@@ -6,6 +6,8 @@ class KontoFirmowe(Konto):
         self.name = name
         self.saldo = 0.0
 
+        self.expressTransferOutCost = 5
+
         if (len(nip) != 10):
             self.nip = "Niepoprawny NIP!"
         else:
