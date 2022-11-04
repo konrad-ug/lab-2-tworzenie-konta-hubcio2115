@@ -6,6 +6,8 @@ class Konto:
         self.checkIfPeselIsValid(pesel)
         self.checkIfPromoIsApplicable(coupon)
 
+        self.history = []
+
         self.expressTransferOutCost = 1
 
     def checkIfPeselIsValid(self, pesel: str) -> None:
@@ -25,13 +27,18 @@ class Konto:
 
     def transferIn(self, amount: float) -> None:
         self.saldo += amount
+        self.history.append(amount)
 
     def transferOut(self, amount: float) -> None:
         if (self.saldo >= amount):
             self.saldo -= amount
+
+        self.history.append(-amount)
 
     def expressTransferOut(self, amount: float) -> None:
         calculatedAmount = amount + self.expressTransferOutCost
 
         if (self.saldo >= amount):
             self.saldo -= calculatedAmount
+
+        self.history.append(-calculatedAmount)

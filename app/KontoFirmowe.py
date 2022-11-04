@@ -8,6 +8,8 @@ class KontoFirmowe(Konto):
 
         self.expressTransferOutCost = 5
 
+        self.history = []
+
         if (len(nip) != 10):
             self.nip = "Niepoprawny NIP!"
         else:
