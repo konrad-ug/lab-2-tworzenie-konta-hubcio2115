@@ -42,3 +42,11 @@ class Konto:
             self.saldo -= calculatedAmount
 
         self.history.append(-calculatedAmount)
+
+    def takeLoan(self, amount):
+        lastFiveTransactions = self.history[-5:]
+
+        if sum(lastFiveTransactions) > amount and all(elem > 0 for elem in lastFiveTransactions[-3:]):
+            self.saldo += amount
+            return True
+        return False
