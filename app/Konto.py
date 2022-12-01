@@ -46,7 +46,7 @@ class Konto:
     def takeLoan(self, amount):
         lastFiveTransactions = self.history[-5:]
 
-        if sum(lastFiveTransactions) > amount and all(elem > 0 for elem in lastFiveTransactions[-3:]):
+        if len(lastFiveTransactions) >= 5 and sum(lastFiveTransactions) > amount and all(elem > 0 for elem in lastFiveTransactions[-3:]):
             self.saldo += amount
             return True
         return False
