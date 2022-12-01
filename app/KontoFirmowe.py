@@ -19,9 +19,9 @@ class KontoFirmowe(Konto):
         isSaldoMoreThanTwoTimesTheAmountOfLoan = amount * 2 <= self.saldo
 
         try:
-            isOneOfTheTransferOutsToZUS = bool(self.history.index(-1775) + 1)
+            self.history.index(-1775)
 
-            if isSaldoMoreThanTwoTimesTheAmountOfLoan and isOneOfTheTransferOutsToZUS:
+            if isSaldoMoreThanTwoTimesTheAmountOfLoan:
                 self.saldo += amount
                 return True
             else:
