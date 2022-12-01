@@ -46,7 +46,14 @@ class Konto:
     def takeLoan(self, amount):
         lastFiveTransactions = self.history[-5:]
 
-        if sum(lastFiveTransactions) > amount and all(elem > 0 for elem in lastFiveTransactions[-3:]):
+        isHistoryLongEnough = len(lastFiveTransactions) >= 5
+        isSumOfLastTransactionsGreaterThanAmountOfTheLoan = sum(
+            lastFiveTransactions) > amount
+        areThreeLastTransactionsTransferIns = all(
+            elem > 0 for elem in lastFiveTransactions[-3:])
+
+        isApplicableForLoan = isHistoryLongEnough and isSumOfLastTransactionsGreaterThanAmountOfTheLoan and areThreeLastTransactionsTransferIns
+        if isApplicableForLoan:
             self.saldo += amount
             return True
         return False

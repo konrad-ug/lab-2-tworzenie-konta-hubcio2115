@@ -14,3 +14,18 @@ class KontoFirmowe(Konto):
             self.nip = "Niepoprawny NIP!"
         else:
             self.nip = nip
+
+    def takeLoan(self, amount):
+        isSaldoMoreThanTwoTimesTheAmountOfLoan = amount * 2 <= self.saldo
+
+        try:
+            self.history.index(-1775)
+
+            if isSaldoMoreThanTwoTimesTheAmountOfLoan:
+                self.saldo += amount
+                return True
+            else:
+                return False
+
+        except:
+            return False
