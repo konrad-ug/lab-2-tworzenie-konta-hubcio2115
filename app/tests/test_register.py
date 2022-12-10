@@ -35,6 +35,10 @@ class TestRegister(unittest.TestCase):
         user = RejestrKont.searchUser("Stachu")
         self.assertEqual(user, None)
 
+    def test_user_count(self):
+        count = RejestrKont.usersCount()
+        self.assertEqual(count, 4)
+
     @classmethod
     def tearDownClass(cls):
         RejestrKont.users = []
