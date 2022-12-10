@@ -1,6 +1,6 @@
 import unittest
 
-from app.KontoFirmowe import KontoFirmowe
+from app.CompanyAccount import CompanyAccount
 
 
 class TestCreateCompanyBankAccount(unittest.TestCase):
@@ -9,17 +9,17 @@ class TestCreateCompanyBankAccount(unittest.TestCase):
     initialSaldo = 0.0
 
     def test_creating_company_bank_account(self):
-        account = KontoFirmowe(self.nip, self.name)
+        account = CompanyAccount(self.nip, self.name)
 
         self.assertEqual(account.name, self.name,
                          "Na koncie firmowym brakuje wartości name!")
         self.assertEqual(account.nip, self.nip,
                          "Na koncie firmowym brakuje wartości nip!")
-        self.assertEqual(account.saldo, self.initialSaldo,
+        self.assertEqual(account.balance, self.initialSaldo,
                          "Saldo konta firmowego nie jest równe 0 przy jego stworzeniu!")
 
     def test_when_nip_is_not_ten_in_length(self):
-        account = KontoFirmowe("1", self.name)
+        account = CompanyAccount("1", self.name)
 
         self.assertEqual(account.nip, "Niepoprawny NIP!",
                          'Pesel nie ma wartości "Niepoprawny pesel", gdy podamy pesel w złym formacie!')
