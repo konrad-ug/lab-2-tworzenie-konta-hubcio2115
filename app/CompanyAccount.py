@@ -1,28 +1,28 @@
-from app.Konto import Konto
+from app.Account import Account
 
 
-class KontoFirmowe(Konto):
+class CompanyAccount(Account):
     def __init__(self, nip: str, name: str) -> None:
         self.name = name
-        self.saldo = 0.0
+        self.balance = 0.0
 
         self.expressTransferOutCost = 5
 
-        self.history = []
+        self.history: list[float] = []
 
         if (len(nip) != 10):
             self.nip = "Niepoprawny NIP!"
         else:
             self.nip = nip
 
-    def takeLoan(self, amount):
-        isSaldoMoreThanTwoTimesTheAmountOfLoan = amount * 2 <= self.saldo
+    def takeLoan(self, amount: float):
+        isSaldoMoreThanTwoTimesTheAmountOfLoan = amount * 2 <= self.balance
 
         try:
             self.history.index(-1775)
 
             if isSaldoMoreThanTwoTimesTheAmountOfLoan:
-                self.saldo += amount
+                self.balance += amount
                 return True
             else:
                 return False

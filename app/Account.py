@@ -1,12 +1,12 @@
-class Konto:
-    def __init__(self, pesel: str, imie: str, nazwisko: str, coupon: str = "") -> None:
-        self.imie = imie
-        self.nazwisko = nazwisko
+class Account:
+    def __init__(self, pesel: str, name: str, surname: str, coupon: str = "") -> None:
+        self.name = name
+        self.surname = surname
 
         self.checkIfPeselIsValid(pesel)
         self.checkIfPromoIsApplicable(coupon)
 
-        self.history = []
+        self.history: list[float] = []
 
         self.expressTransferOutCost = 1
 
@@ -16,34 +16,34 @@ class Konto:
         else:
             self.pesel = "Niepoprawny pesel!"
 
-    def checkIfPromoIsApplicable(self, coupon) -> None:
-        isApplicable = coupon[0:5] == "PROM_" != None and len(
+    def checkIfPromoIsApplicable(self, coupon: str) -> None:
+        isApplicable = coupon[0:5] == "PROM_" and len(
             coupon) == 8 and (int(self.pesel[2:4]) > 20 or int(self.pesel[0:2]) > 60)
 
         if (isApplicable):
-            self.saldo = 50.0
+            self.balance = 50.0
         else:
-            self.saldo = 0.0
+            self.balance = 0.0
 
     def transferIn(self, amount: float) -> None:
-        self.saldo += amount
+        self.balance += amount
         self.history.append(amount)
 
     def transferOut(self, amount: float) -> None:
-        if (self.saldo >= amount):
-            self.saldo -= amount
+        if (self.balance >= amount):
+            self.balance -= amount
 
         self.history.append(-amount)
 
     def expressTransferOut(self, amount: float) -> None:
         calculatedAmount = amount + self.expressTransferOutCost
 
-        if (self.saldo >= amount):
-            self.saldo -= calculatedAmount
+        if (self.balance >= amount):
+            self.balance -= calculatedAmount
 
         self.history.append(-calculatedAmount)
 
-    def takeLoan(self, amount):
+    def takeLoan(self, amount: float):
         lastFiveTransactions = self.history[-5:]
 
         isHistoryLongEnough = len(lastFiveTransactions) >= 5
@@ -54,6 +54,6 @@ class Konto:
 
         isApplicableForLoan = isHistoryLongEnough and isSumOfLastTransactionsGreaterThanAmountOfTheLoan and areThreeLastTransactionsTransferIns
         if isApplicableForLoan:
-            self.saldo += amount
+            self.balance += amount
             return True
         return False
