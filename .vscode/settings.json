@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["imie"],
+  "cSpell.words": ["imie", "jsonify"],
   "python.testing.unittestArgs": [
     "-v",
     "-s",
